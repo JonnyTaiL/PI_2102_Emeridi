@@ -3,6 +3,7 @@
 import 'coffee.dart';
 import 'enums.dart';
 import 'resources.dart';
+import 'async.dart';
 
 
 // enum ResourceType
@@ -64,7 +65,7 @@ class Machine
 
   
 
-  void makeCoffee(CoffeeType type)
+  Future<void> makeCoffee(CoffeeType type) async
   {
     ICoffee coffee;
     switch(type)
@@ -81,6 +82,9 @@ class Machine
     if(bAvailableResources(type))
     {
       subtractResources(coffee.getBeans(), coffee.getWater(), coffee.getMilk(), coffee.getCash());
+
+      var proccess = await Async.create();
+      
       print('Making coffee took ${coffee.getBeans()}g of Beans, ${coffee.getWater()}ml of Water, ${coffee.getMilk()}ml of Milk and costed ${coffee.getBeans()} bucks');
     }
     else
@@ -88,5 +92,7 @@ class Machine
       print('Not Enougn Resources');
     }
   }
+
+
 
 }

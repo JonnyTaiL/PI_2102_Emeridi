@@ -1,7 +1,7 @@
 
 
 
-abstract class Coffee
+abstract class ICoffee
 {
 
   int beans = 0;
@@ -30,7 +30,7 @@ abstract class Coffee
   }
 }
 
-class Espresso implements Coffee
+class Espresso implements ICoffee
 {
   @override
   int beans = 50;
@@ -46,7 +46,7 @@ class Espresso implements Coffee
   {
     return beans;
   }
-  
+
   @override
   int getMilk()
   {
@@ -67,7 +67,7 @@ class Espresso implements Coffee
 
 }
 
- class Cappucchino implements Coffee
+ class Cappucchino implements ICoffee
 {
   @override
   int beans = 35;
@@ -103,7 +103,7 @@ class Espresso implements Coffee
   }
 }
 
- class Latte implements Coffee
+ class Latte implements ICoffee
 {
   @override
   int beans = 35;
