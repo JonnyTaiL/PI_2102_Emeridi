@@ -66,7 +66,7 @@ class Machine
 
   void makeCoffee(CoffeeType type)
   {
-    Coffee coffee;
+    ICoffee coffee;
     switch(type)
     {
       case CoffeeType.espresso:
