@@ -42,9 +42,9 @@ class _CoffeeMachineState extends State<CoffeeMachine> {
                 onPressed: (){
                   //var w = machine.getResource(ResourceType.water);
                   List<int> resources = [
-                    machine.getResource(ResourceType.beans),
-                    machine.getResource(ResourceType.milk),
-                    machine.getResource(ResourceType.water),
+                    machine.getBeans(),
+                    machine.getMilk(),
+                    machine.getWater(),
                   ];
                   print(resources);
                 },
@@ -54,9 +54,9 @@ class _CoffeeMachineState extends State<CoffeeMachine> {
 
               ElevatedButton (
                 onPressed: (){
-                  machine.setResource(ResourceType.beans, 100);
-                  machine.setResource(ResourceType.milk, 100);
-                  machine.setResource(ResourceType.water, 100);
+                  machine.setBeans(100);
+                  machine.setMilk(100);
+                  machine.setWater(200);
                  // machine.setResource(ResourceType.cash, 100);
                 //  print()
                 },
@@ -66,7 +66,7 @@ class _CoffeeMachineState extends State<CoffeeMachine> {
 
               ElevatedButton (
                 onPressed: (){
-                  machine.makeCoffee(CoffeeType.latte);
+                  machine.makeCoffee();
                 //  print()
                 },
                 child: Text('makeCoffee'),

@@ -3,20 +3,20 @@
 
 
 
-enum ResourceType
-{
-  beans,
-  milk, 
-  water,
-  cash
-}
+// enum ResourceType
+// {
+//   beans,
+//   milk, 
+//   water,
+//   cash
+// }
 
-enum CoffeeType
-{
-  americano,
-  latte,
-  cappucchino,
-}
+// enum CoffeeType
+// {
+//   americano,
+//   latte,
+//   cappucchino,
+// }
 
 class Machine
 {
@@ -30,93 +30,80 @@ class Machine
 
 
   //Functions
-  int getResource(ResourceType resourceType)
+  int getBeans()
   {
-    switch (resourceType) {
-      case ResourceType.beans:
-        return beans;
-      case ResourceType.milk:
-        return milk;
-      case ResourceType.water:
-        return water;
-      case ResourceType.cash:
-        return cash;
-      default: return -1;
-    }
+    return beans;
   }
 
-  void setResource(ResourceType resourceType, int amount)
+  int getMilk()
+  {
+    return milk;
+  }
+
+  int getWater()
+  {
+    return water;
+  }
+
+  int getCash()
+  {
+    return cash;
+  }
+
+
+
+  void setBeans(int amount)
   { 
-    switch (resourceType) {
-      case ResourceType.beans:
-        beans = amount;
-      case ResourceType.milk:
-        milk = amount;
-      case ResourceType.water:
-        water = amount;
-      case ResourceType.cash:
-        cash = amount;
-    }
+    beans = amount;
+    print('Beans set to 100');
   }
 
-  void subtractResources(CoffeeType type)
-  {
-    switch (type) {
-      case CoffeeType.americano:
-        beans -= 50;
-        water -= 100;
-      case CoffeeType.latte:
-        beans -=30;
-        water -=50;
-        milk -= 50;
-      case CoffeeType.cappucchino:
-        beans -=40;
-        water -=70;
-        milk -= 30;
-
-    }
+  void setMilk(int amount)
+  { 
+    milk = amount;
+    print('Milk set to 100');
   }
 
-  bool bAvailableResources(CoffeeType type)
-  {
-    switch (type) {
-      case CoffeeType.americano:
-        if(beans >= 50 && water >= 100)
-        {
-          return true;
-        } 
-        else {
-          return false;
-        }
-
-      case CoffeeType.latte:
-        if(beans >= 30 && water >= 50 && milk >= 50)
-        {
-          return true;
-        } 
-        else {
-          return false;
-        }
-
-      case CoffeeType.cappucchino:
-        if(beans >= 40 && water >= 70 && milk >= 30)
-        {
-          return true;
-        } 
-        else {
-          return false;
-        }
-        
-
-      default: return false;
-    }
+  void setWater(int amount)
+  { 
+    water = amount;
+    print('Water set to 200');
   }
 
-  void makeCoffee(CoffeeType type)
+  void setCash(int amount)
+  { 
+    cash = amount;
+    print('Beans set to 100');
+  }
+
+  void subtractResources()
   {
-    if(bAvailableResources(type))
+    beans -= 50;
+    water -= 100;
+  }
+
+  bool bAvailableResources()
+  {
+    if( beans >= 50 && water >= 100)
     {
-      subtractResources(type);
+        return true;
+    }
+    else
+    {
+      return false;
+    }
+
+  }
+
+
+  
+
+  void makeCoffee()
+  {
+    if(bAvailableResources())
+    {
+      subtractResources();
+      print('Making coffee took 50g of Beans and 100ml of Water');
     }
     else
     {
