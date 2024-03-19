@@ -1,6 +1,8 @@
 
 //import 'package:flutter/material.dart';
-
+import 'coffee.dart';
+import 'enums.dart';
+import 'resources.dart';
 
 
 // enum ResourceType
@@ -21,70 +23,34 @@
 class Machine
 {
 
-  //Variables
-  int beans = 100;
-  int milk = 100;
-  int water = 100;
-  int cash = 100;
+  var resources = Resources(beans: 100, water: 100, milk: 100, cash: 100);
 
 
-
-  //Functions
-  int getBeans()
+  void fillResources()
   {
-    return beans;
+    resources.setBeans(100);
+    resources.setWater(200);
+    resources.setMilk(100);
+    resources.setCash(100);
   }
 
-  int getMilk()
+  void debugPrintResources()
   {
-    return milk;
+    print('Beans left: ${resources.getBeans()}, Water left: ${resources.getWater()}, Milk left: ${resources.getMilk()}, Cash left: ${resources.getCash()}');
   }
 
-  int getWater()
+
+  void subtractResources(int beans, int water, int milk, int cash)
   {
-    return water;
+    resources.beans -= beans;
+    resources.water -= water;
+    resources.milk -= milk;
+    resources.cash -= cash;
   }
 
-  int getCash()
+  bool bAvailableResources(CoffeeType type)
   {
-    return cash;
-  }
-
-
-
-  void setBeans(int amount)
-  { 
-    beans = amount;
-    print('Beans set to 100');
-  }
-
-  void setMilk(int amount)
-  { 
-    milk = amount;
-    print('Milk set to 100');
-  }
-
-  void setWater(int amount)
-  { 
-    water = amount;
-    print('Water set to 200');
-  }
-
-  void setCash(int amount)
-  { 
-    cash = amount;
-    print('Beans set to 100');
-  }
-
-  void subtractResources()
-  {
-    beans -= 50;
-    water -= 100;
-  }
-
-  bool bAvailableResources()
-  {
-    if( beans >= 50 && water >= 100)
+    if( resources.beans >= 50 && resources.water >= 100)
     {
         return true;
     }
@@ -98,20 +64,29 @@ class Machine
 
   
 
-  void makeCoffee()
+  void makeCoffee(CoffeeType type)
   {
-    if(bAvailableResources())
+    ICoffee coffee;
+    switch(type)
     {
-      subtractResources();
-      print('Making coffee took 50g of Beans and 100ml of Water');
+      case CoffeeType.espresso:
+        coffee = Espresso();
+      case CoffeeType.cappucchino:
+        coffee = Cappucchino();
+      case CoffeeType.latte:
+        coffee = Latte();
+    }
+
+
+    if(bAvailableResources(type))
+    {
+      subtractResources(coffee.getBeans(), coffee.getWater(), coffee.getMilk(), coffee.getCash());
+      print('Making coffee took ${coffee.getBeans()}g of Beans, ${coffee.getWater()}ml of Water, ${coffee.getMilk()}ml of Milk and costed ${coffee.getBeans()} bucks');
     }
     else
     {
       print('Not Enougn Resources');
     }
   }
-
-  
-  
 
 }

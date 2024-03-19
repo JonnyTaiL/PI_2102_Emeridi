@@ -1,7 +1,141 @@
+
+//import 'package:flutter/material.dart';
+
+
+
+// enum ResourceType
+// {
+//   beans,
+//   milk, 
+//   water,
+//   cash
+// }
+
+// enum CoffeeType
+// {
+//   americano,
+//   latte,
+//   cappucchino,
+// }
+
+class Machine
+{
+
+  //Variables
+  int beans = 100;
+  int milk = 100;
+  int water = 100;
+  int cash = 100;
+
+
+
+  //Functions
+  int getBeans()
+  {
+    return beans;
+  }
+
+  int getMilk()
+  {
+    return milk;
+  }
+
+  int getWater()
+  {
+    return water;
+  }
+
+  int getCash()
+  {
+    return cash;
+  }
+
+
+
+  void setBeans(int amount)
+  { 
+    beans = amount;
+    print('Beans set to 100');
+  }
+
+  void setMilk(int amount)
+  { 
+    milk = amount;
+    print('Milk set to 100');
+  }
+
+  void setWater(int amount)
+  { 
+    water = amount;
+    print('Water set to 200');
+  }
+
+  void setCash(int amount)
+  { 
+    cash = amount;
+    print('Beans set to 100');
+  }
+
+  void subtractResources()
+  {
+    beans -= 50;
+    water -= 100;
+  }
+
+  bool bAvailableResources()
+  {
+    if( beans >= 50 && water >= 100)
+    {
+        return true;
+    }
+    else
+    {
+      return false;
+    }
+
+  }
+
+
+  
+
+  void makeCoffee()
+  {
+    if(bAvailableResources())
+    {
+      subtractResources();
+      print('Making coffee took 50g of Beans and 100ml of Water');
+    }
+    else
+    {
+      print('Not Enougn Resources');
+    }
+  }
+
+  
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 //import 'package:provider/provider.dart';
-import 'enums.dart';
 import 'machine.dart';
 
 void main() {
@@ -39,23 +173,15 @@ class _CoffeeMachineState extends State<CoffeeMachine> {
           child: Column(
             children: [
 
-               Padding(
-                padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-                child: Container(
-                  color: Color.fromARGB(255, 255, 191, 54),
-                  child: Text(
-                    'Make yourself some coffee'
-                                
-                  ),
-                ),
-              ),
-
-
               ElevatedButton (
                 onPressed: (){
                   //var w = machine.getResource(ResourceType.water);
-                  
-                  machine.debugPrintResources();
+                  List<int> resources = [
+                    machine.getBeans(),
+                    machine.getMilk(),
+                    machine.getWater(),
+                  ];
+                  print(resources);
                 },
                 child: Text('Get Resources'),
               ),
@@ -63,7 +189,9 @@ class _CoffeeMachineState extends State<CoffeeMachine> {
 
               ElevatedButton (
                 onPressed: (){
-                  machine.fillResources();
+                  machine.setBeans(100);
+                  machine.setMilk(100);
+                  machine.setWater(200);
                  // machine.setResource(ResourceType.cash, 100);
                 //  print()
                 },
@@ -73,13 +201,13 @@ class _CoffeeMachineState extends State<CoffeeMachine> {
 
               ElevatedButton (
                 onPressed: (){
-                  machine.makeCoffee(CoffeeType.cappucchino);
+                  machine.makeCoffee();
                 //  print()
                 },
                 child: Text('makeCoffee'),
               ),
 
-        
+
 
 
             ],
